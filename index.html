@@ -11,8 +11,11 @@
 <meta name="description" content="R.G.Kar Medical College Ex-Students Association Financial Management">
 <title>RGK ESA Finance</title>
 <link id="pwa-manifest" rel="manifest">
-<link id="apple-icon" rel="apple-touch-icon">
-<script src="https://cdn.tailwindcss.com"></script>
+<link id="apple-icon" rel="apple-touch-icon" href="./icon-192.png">
+<link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="./icon-512.png">
+<script src="https://cdn.tailwindcss.com/3.4.1/tailwind.min.js"></script>
+<meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' 'unsafe-eval' data: blob:;">
 <script src="https://cdn.sheetjs.com/xlsx-0.20.0/package/dist/xlsx.full.min.js"></script>
 <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -1055,32 +1058,29 @@ function makeIcon(size) {
 
 // Build and inject PWA manifest
 function setupPWA() {
-  const icon192 = makeIcon(192);
-  const icon512 = makeIcon(512);
-
   const base = window.location.pathname.replace(/[^/]*$/, "") || "/";
 
   const manifest = {
     name: "RGK ESA Financial Management",
     short_name: "RGK ESA Finance",
     description: "R.G.Kar Medical College Ex-Students' Association Financial Management System",
-    start_url: window.location.href,
-    scope: base,
+    start_url: "./",
+    scope: "./",
     display: "standalone",
     background_color: "#1e3a8a",
     theme_color: "#1e3a8a",
     orientation: "any",
     lang: "en-IN",
     icons: [
-      { src: icon192, sizes: "192x192", type: "image/png", purpose: "any maskable" },
-      { src: icon512, sizes: "512x512", type: "image/png", purpose: "any maskable" }
+      { src: "./icon-192.png", sizes: "192x192", type: "image/png", purpose: "any maskable" },
+      { src: "./icon-512.png", sizes: "512x512", type: "image/png", purpose: "any maskable" }
     ],
     categories: ["finance", "business", "productivity"]
   };
 
   const blob = new Blob([JSON.stringify(manifest)], { type: "application/manifest+json" });
   document.getElementById("pwa-manifest").href = URL.createObjectURL(blob);
-  document.getElementById("apple-icon").href = icon192;
+  document.getElementById("apple-icon").href = "./icon-192.png";
 }
 
 // Register service worker
